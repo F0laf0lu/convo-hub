@@ -1,0 +1,61 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load form_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+<body>
+    <div class="login-dark">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><h3>Sign in</h3></div>
+
+            {% if form.non_field_errors  %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% for field in form  %}
+                <div class="form-group">
+                    {% render_field field class=field|input_class    placeholder=field.label%}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% endfor %}
+
+
+            {% comment %} <div class="form-group"><input class="form-control" type="text" name="username" placeholder="username"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
+            </div> {% endcomment %}
+
+
+            <div class="form-group"><button class="btn btn-primary btn-block">Sign In</button></div>
+            <a href="{% url "signup" %}" class="forgot">Create Account</a>
+            <a class="forgot"
+                href="#">Forgot your username or password?</a>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+/.venv
+/static/chatpage_files
+*.pyc
+.env
+/notes.txt
+*.sqlite3

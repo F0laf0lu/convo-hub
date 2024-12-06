@@ -1,0 +1,72 @@
+{% load static %}
+
+
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+
+<body style="height: 100vh;">
+    <div class="login-dark">
+        <form method='post' novalidate>
+            {% csrf_token %}
+            <h2 class="sr-only">Sign Up form</h2>
+            <div class="illustration">
+                <h3 >Sign Up</h3>
+            </div>
+
+            {% for field in form %}
+            <div class="form-group">
+
+                {% if form.is_bound %}
+                    {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" placeholder=field.label%}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% render_field field class="form-control is-valid" placeholder=field.label%}
+                    {% endif %}
+                {% else %}
+                    {% render_field field class="form-control" placeholder=field.label%}
+                {% endif %}
+            </div>
+
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Sign Up</button>
+            </div>
+
+
+            {% comment %} <div class="form-group"><input class="form-control" type="text" name="username" placeholder="username"></div>
+            <div class="form-group"><input class="form-control" type="text" name="username" placeholder="email"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
+            <div class="form-group"><input class="form-control" type="password" name="confirmpassword" placeholder="confirm password">
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-block">Sign Up</button></div> {% endcomment %}
+            <a href="{% url "signin" %}" class="forgot">Have an account ? Log in</a>
+            <a class="forgot" href="#">Forgot your password?</a>
+
+
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+</body>
+
+</html>
